@@ -174,38 +174,27 @@ FROM unique_titles
 GROUP BY title
 ORDER BY COUNT DESC;
 
-
 -- retiring_titles.csv
-SELECT * FROM retiring_titles
+SELECT * FROM retiring_titles;
+
+--Creating a list of employees eligitable for potential mentorship program
+SELECT e.emp_no, e.first_name, e.last_name, e.birth_date, de.from_date, de.to_date, ti.title
+INTO mentorship
+FROM employees as e
+INNER JOIN dept_emp as de on (e.emp_no=de.emp_no)
+INNER JOIN titles as ti on (e.emp_no=ti.emp_no)
+WHERE (de.to_date = '9999-01-01')
+AND (e.birth_date BETWEEN '1965-01-01' AND '1965-12-31')
+ORDER BY e.emp_no;
+
+-- mentorship_eligibilty.csv
+SELECT DISTINCT ON (emp_no) * FROM mentorship
+ORDER BY emp_no;
 
 
-
-
-
-
-
-
-
--- Retirement employee and titles
+-- Testing: Retirement employee and titles
 SELECT ret.*, t.title
 FROM retirement_info AS ret LEFT JOIN titles AS t on (ret.emp_no=t.emp_no)
 WHERE t.to_date = '9999-01-01'
-
-
-
--- Joining departments and dept_manager
-SELECT d.dept_name, t.title
-FROM departments As d
-INNER JOIN dept_manager As dm on (d.dept_no=dm.dept_no)
-INNER JOIN employees AS emp ON (dm.emp_no=emp.emp_no)
-INNER JOIN titles AS t ON (emp.emp_no=t.emp_no)
-LEFT JOIN retirement_info as ret on (ret.emp_no=t.emp_no)
-WHERE t.to_date = '9999-01-01'
-
-SELECT COUNT(dept_manager) FROM dept_manager
-SELECT * FROM titles
-
-
-INNER JOIN titles AS 
 
 
