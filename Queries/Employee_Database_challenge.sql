@@ -57,13 +57,47 @@ CREATE TABLE titles (
 	PRIMARY KEY (emp_no, title, from_date)
 	);
 
-
 DROP TABLE titles CASCADE;
 
 
-SELECT first_name, last_name
-FROM employees
-WHERE birth_date BETWEEN '1952-01-01' AND '1955-12-31';
+
+
+
+
+
+
+
+
+
+-- Queries
+
+-- Total current employees (including eligable for retirement)
+SELECT e.emp_no, e.first_name, e.last_name, t.title, e.hire_date,t.from_date,t.to_date
+INTO total_current_employees
+FROM employees AS e
+INNER JOIN titles AS t ON e.emp_no=t.emp_no
+WHERE t.to_date ='9999-01-01'
+ORDER BY e.emp_no;
+
+select * from total_current_employees
+
+-- Count employees by titles
+SELECT COUNT(title),title
+INTO total_current_employees_titles
+FROM total_current_employees
+GROUP BY title
+ORDER BY count DESC
+
+SELECT * from total_current_employees_titles
+ORDER BY count DESC
+
+-- Total current employees that are not retiring 
+SELECT e.emp_no, e.first_name, e.last_name, t.title, e.hire_date,t.from_date,t.to_date
+INTO total_current_employees
+FROM employees AS e
+INNER JOIN titles AS t ON e.emp_no=t.emp_no
+WHERE t.to_date ='9999-01-01'
+ORDER BY e.emp_no;
 
 -- Retirement eligibility
 SELECT emp_no, first_name, last_name
@@ -75,7 +109,7 @@ AND hire_date BETWEEN '1985-01-01'AND '1988-12-31';
 SELECT * FROM retirement_info
 
 
--- Number of employee
+-- Number of retiring employee
 SELECT COUNT (emp_no)
 FROM employees
 WHERE birth_date BETWEEN '1952-01-01' AND '1955-12-31'
@@ -84,13 +118,16 @@ AND hire_date BETWEEN '1985-01-01'AND '1988-12-31';
 SELECT COUNT (emp_no)
 FROM retirement_info;
 
+
+
 -- Selecting current employees
-SELECT ri.emp_no, ri.first_name, ri.last_name
+SELECT ri.emp_no, ri.first_name, ri.last_name, de.to_date
 INTO current_emp
 FROM retirement_info AS ri
 LEFT JOIN dept_emp AS de
 ON ri.emp_no=de.emp_no
 WHERE de.to_date = '9999-01-01';
+
 
 -- Employee count by department number
 SELECT COUNT(ce.emp_no), de.dept_no
@@ -162,7 +199,7 @@ FROM (SELECT emp_no, first_name, last_name, to_date, title, ROW_NUMBER()OVER
 	FROM ret_titles)
 	tmp WHERE rn=1
 	ORDER BY emp_no;
-
+	
 -- Unique_titles.csv
 SELECT * from unique_titles
 ORDER BY emp_no;
@@ -188,13 +225,22 @@ AND (e.birth_date BETWEEN '1965-01-01' AND '1965-12-31')
 ORDER BY e.emp_no;
 
 -- mentorship_eligibilty.csv
-SELECT DISTINCT ON (emp_no) * FROM mentorship
+SELECT DISTINCT ON (emp_no) * 
+INTO mentoship_titles 
+FROM mentorship
 ORDER BY emp_no;
+
+SELECT COUNT(title), title
+FROM mentoship_titles 
+GROUP BY title
+ORDER BY count DESC
 
 
 -- Testing: Retirement employee and titles
 SELECT ret.*, t.title
 FROM retirement_info AS ret LEFT JOIN titles AS t on (ret.emp_no=t.emp_no)
 WHERE t.to_date = '9999-01-01'
+
+
 
 
