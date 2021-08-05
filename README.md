@@ -34,7 +34,7 @@ Pewlett Hackard cuurently has 240,124 employees and 33,118 of them are at retire
 - Are there enough qualified, retirement-ready employees in the departments to mentor the next generation of Pewlett Hackard employees?<br>
 It depends on the department and how many employees can a mentor handle. In result, there are 1549 employees qualified for mentorship program. Each of them will supposed to provide mentorship for 22 new employees. 
 However, titles like "senior engineer" will have 13,851 new employees and only 169 mentors, which means each mentor will need to handle over 80 new employees, that might cause work overload. 
-![Retirement_titles](/Data/Retirement_titles.png)<br>
+![mentorship_titles](/Data/mentorship_titles.png)<br>
 
 The other reliable way to look at qualification of the mentorship would be determined by experience, "hire_date" rather than "birth_date".
 
