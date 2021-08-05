@@ -36,5 +36,5 @@ It depends on the department and how many employees can a mentor handle. In resu
 However, titles like "senior engineer" will have 13,851 new employees and only 169 mentors, which means each mentor will need to handle over 80 new employees, that might cause work overload. <br>
 ![mentorship_titles](/Data/mentorship_titles.png)<br>
 
-The other reliable way to look at qualification of the mentorship would be determined by experience, "hire_date" rather than "birth_date".
+The other reliable way to look at qualification for the mentorship would be determined by experience, "hire_date" rather than "birth_date".
 
