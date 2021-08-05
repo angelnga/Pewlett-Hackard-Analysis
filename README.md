@@ -29,7 +29,7 @@ Count the number of employee and group by titles.
 
 ## Summary
 - How many roles will need to be filled as the "silver tsunami" begins to make an impact?<br>
-Pewlett Hackard cuurently has 240,124 employees and 33,118 of them are at retirement age. Which means 33,118 of position will need to be filled. 
+Pewlett Hackard currently has 240,124 employees and 33,118 of them are at retirement age. Which means 33,118 of position will need to be filled. 
 
 - Are there enough qualified, retirement-ready employees in the departments to mentor the next generation of Pewlett Hackard employees?<br>
 It depends on the department and how many employees can a mentor handle. In result, there are 1549 employees qualified for mentorship program. Each of them will supposed to provide mentorship for 22 new employees. 
